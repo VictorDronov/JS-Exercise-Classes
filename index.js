@@ -41,9 +41,9 @@ class Airplane {
 */
 
 class Person {
-  constructor(attribute){
-    this.name = attribute.name
-    this.age = attribute.age
+  constructor(name, age){
+    this.name = name
+    this.age = age
     this.stomach = []
     this.food = ""
   }
@@ -62,14 +62,7 @@ class Person {
   }
 }
 
-const newPerson = new Person({
-  name: 'Josh',
-  age: 20,
-});
-const anotherPerson = new Person({
-  name: 'Neo',
-  age: 20,
-});
+const newPerson = new Person('Josh', 2);
 
 
 console.log(newPerson)
@@ -79,7 +72,6 @@ console.log(newPerson)
 // newPerson.poop()
 // console.log(newPerson.stomach)
 console.log(newPerson.toString())
-console.log(anotherPerson.toString())
 
 /*
   TASK 2
@@ -96,24 +88,34 @@ console.log(anotherPerson.toString())
 */
 
 class Car {
-  constructor(attributes){
-    this.model = attributes.model
-    this.milesPerGallon = attributes.milesPerGallon
+  constructor(model, milesPerGallon){
+    this.model = model
+    this.milesPerGallon = milesPerGallon
     this.tank = 0
     this.odometer = 0
   }
   fill(gallons){
     return this.tank += gallons
   }
+  drive(distance){
+      if (this.tank > 0 && distance > 0) {
+        this.odometer += distance;
+        this.tank -= distance / this.milesPerGallon;
+      if (this.tank <= 0) {
+        this.odometer -= Math.abs(this.tank) * this.milesPerGallon;
+        this.tank = 0;
+        return `I ran out of fuel at ${this.odometer} miles!`;
+      } else {
+        return `You have ${this.tank} gallons of gas left`;
+      }
+    }
+  }
 }
+const newCar = new Car('Bently',22);
 
-const newCar = new Car({
-  model: 'Bently',
-  milesPerGallon: 22,
-});
-
+newCar.fill(20)
+console.log(newCar.drive(200))
 console.log(newCar)
-
 /*
   TASK 3
     - Write a Lambdasian class.
