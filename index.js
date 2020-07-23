@@ -159,8 +159,19 @@ console.log(newBeing)
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-class Instructor {
-
+class Instructor extends Lambdasian {
+  constructor(attrib){
+    super(attrib)
+    this.specialty = attrib.specialty
+    this.favLanguage = attrib.favLanguage
+    this.catchPhrase = attrib.catchPhrase
+  }
+  demo(subject){
+    return `Today we are learning about ${subject}`
+  }
+  grade(subject){
+    return `${this.name} receives a perfect score on ${subject}`
+  }
 }
 
 /*
@@ -178,10 +189,33 @@ class Instructor {
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
-
+class Student extends Lambdasian{
+  constructor(attrib){
+    super(attrib)
+    this.previousBackground = attrib.previousBackground
+    this.className = attrib.className
+    this.favSubjects = attrib.favSubjects
+  }
+  listSubjects(){
+    return `${this.favSubjects}`
+  }
+  PRAssignment(subject){
+    return `${this.name} has submitted a PR for ${subject}`
+  }
+  sprintChallenge(subject){
+    return `${this.name} has begun sprint challenge on ${subject}`
+  }
 }
+const student = new Student({
+  name: 'Jer',
+  age: 40,
+  location: 'The Empire',
+  previousBackground: 'nurse',
+  className: "Web34",
+  favSubjects: 'florbing'
+});
 
+console.log(student)
 /*
   TASK 6
     - Write a ProjectManager class extending Instructor.
